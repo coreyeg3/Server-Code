@@ -11,6 +11,12 @@ import socket
 import sys
 import mmap
 import time
+import os
+
+def touch(fname, times=None):
+	with open(fname, 'a+'):
+		os.utime(fname, times)
+touch('./logfiles/socketlog.txt')
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -24,6 +30,7 @@ sock.listen(1)
 while 1:
         
         connection, client_address = sock.accept()
+	touch('./logfiles/socketlog.txt')
         if connection:
             with open('memmap.txt','r+') as a:
                     mm = mmap.mmap(a.fileno(),0)

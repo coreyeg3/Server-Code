@@ -7,6 +7,11 @@ Copyright 2018
 import os
 import time
 import datetime
+
+def touch(fname, times=None):
+	with open(fname, 'a+'):
+		os.utime(fname, times)
+touch('./logfiles/log.txt')
 while 1:
     f = open('./logfiles/wdg_log.txt', 'a+')
     magexec = './logfiles/log.txt' ## Path of file you want to watch
@@ -17,16 +22,19 @@ while 1:
     timer_duration = 15 ## Seconds
     if (current_time - last_update_mag >= timer_duration):
         f.write( '%s WTH something is not running.\n' % datetime.datetime.now())
-        execfile('magexec.py')
-        time.sleep(5)
+	execfile('magexec.py')
+	time.sleep(5)
         f.close()
     if (current_time - last_update_mag <= timer_duration):
         time.sleep(5)
         pass
     if (current_time - last_update_socket >= timer_duration):
         f.write( '%s WTH something is not running.\n' % datetime.datetime.now())
-        execfile('listen.py')
-        time.sleep(5)
+        try:
+		execfile('listen.py')
+        except socket.error as error:
+		pass
+	time.sleep(5)
         f.close()
     if (current_time - last_update_socket <= timer_duration):
         time.sleep(5)

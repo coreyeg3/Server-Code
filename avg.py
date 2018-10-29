@@ -27,8 +27,8 @@ file('test.txt','wx+').writelines(lines)
 ######################################################################
 
 ## fill the variables to average
-with open("test.txt","r") as f:
-    rows = csv.reader(f, delimiter=',')
+with open("test.txt","r") as a:
+    rows = csv.reader(a, delimiter=',')
     for row in rows:      
         ti.append(float(row[0]))
         f0.append(float(row[1]))

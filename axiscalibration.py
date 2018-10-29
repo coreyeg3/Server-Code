@@ -12,12 +12,6 @@ XY_Gain = float(450)
 Z_Gain = float(400)
 
 
-MagMinX = 0
-MagMaxX = 0
-MagMinY = 0
-MagMaxY = 0
-MagMinZ = 0
-MagMaxZ = 0
 
 print '--------------------------------------------------------'
 print 'Starting up calibration program for LSM303 Magnetometers'
@@ -26,16 +20,33 @@ print 'each number stops updating. when finished press ctrl + c'
 print '--------------------------------------------------------'
 print 'Channel to calibrate: '
 channel = input()
-f=open("axisshift_%s" % channel,'ax+')
+f=open("./calibrationfiles/axisshift_%s.txt" % channel,'ax+')
+SW.chn(channel)
+lsm303 = Adafruit_LSM303.LSM303()
+accel, mag = lsm303.read()
+mag_x, mag_y, mag_z = mag
+
+x = round(float((mag_x/XY_Gain)),3)
+y = round(float((mag_y/XY_Gain)),3)
+z = round(float((mag_z/Z_Gain)),3)
+
+MagMinX= x
+MagMaxX= x
+MagMinY= y
+MagMaxY= y
+MagMinZ= z
+MagMaxZ= z
+
+
 while True: 
         try:           
-            SW.chn(channel)
+       	    SW.chn(channel)
             lsm303 = Adafruit_LSM303.LSM303()
 	    accel, mag = lsm303.read()
 	    mag_x, mag_y, mag_z = mag
 	    x = round(float((mag_x/XY_Gain)),3)
 	    y = round(float((mag_y/XY_Gain)),3)
-	    z = round(float((mag_z/Z_Gain)+0.8),3)
+	    z = round(float((mag_z/Z_Gain)),3)
             if (x < MagMinX):
                 MagMinX = round(x,3)
                 pass

@@ -43,20 +43,20 @@ while True:
 			accel, mag = lsm303.read()
 			mag_x, mag_y, mag_z = mag
 			# Difference from probe
-			X_Cal = 0
-			Y_Cal = 0
-			Z_Cal = 0
+			X_Cal = -0.9532
+			Y_Cal = 0.4171
+			Z_Cal = -0.0293
 
-			x = float((mag_x/XY_Gain)+X_Cal)
-			y = float((mag_y/XY_Gain)+Y_Cal)
-			z = float((mag_z/Z_Gain)+Z_Cal)
+			x = float((mag_x/XY_Gain)+X_Cal-0.538)
+			y = float((mag_y/XY_Gain)+Y_Cal-0.3535)
+			z = float((mag_z/Z_Gain)+Z_Cal+0.375)
 			f = math.sqrt((x*x) +(y*y) + (z*z))
-			field0 = round(f,4)
+			field0 = round(f,3)
 			if(field0>8.100):
 				data.write("0.000,")
 				log.write("%s Sensor 0 too high\n" % datetime.datetime.now())
 			else:	
-				data.write("%s," % field0)
+				data.write("%05.3f," % field0)
 				pass
 		except IOError:
 			data.write("0.000,")
@@ -71,20 +71,20 @@ while True:
                         time.sleep(0.01)
 			accel, mag = lsm303.read()
 			mag_x, mag_y, mag_z = mag
-			X_Cal = 0
-			Y_Cal = 0
-			Z_Cal = 0
+			X_Cal = -1.3140
+			Y_Cal = -3.5527
+			Z_Cal = -0.5587
 
-			x = float((mag_x/XY_Gain)+X_Cal)
-			y = float((mag_y/XY_Gain)+Y_Cal)
-			z = float((mag_z/Z_Gain)+Z_Cal)
+			x = float((mag_x/XY_Gain)+X_Cal-0.442)
+			y = float((mag_y/XY_Gain)+Y_Cal+4.393)
+			z = float((mag_z/Z_Gain)+Z_Cal+0.12)
 			f = math.sqrt((x*x) +(y*y) + (z*z))
-			field1 = round(f,4)
+			field1 = round(f,3)
 			if(field1>8.100):
 				data.write("0.000,")
 				log.write("%s Sensor 1 too high\n" % datetime.datetime.now())
 			else:	
-				data.write("%s," % field1)
+				data.write("%05.3f," % field1)
 				pass
 		except IOError:
 			data.write("0.000,")
@@ -99,20 +99,20 @@ while True:
                         time.sleep(0.01)
 			accel, mag = lsm303.read()
 			mag_x, mag_y, mag_z = mag
-			X_Cal = 0
-			Y_Cal = 0
-			Z_Cal = 0
+			X_Cal = -0.3258
+			Y_Cal = 0.7117
+			Z_Cal = -0.2639
 
-			x = float((mag_x/XY_Gain)+X_Cal)
-			y = float((mag_y/XY_Gain)+Y_Cal)
-			z = float((mag_z/Z_Gain)+Z_Cal)
+			x = float((mag_x/XY_Gain)+X_Cal+0.139)
+			y = float((mag_y/XY_Gain)+Y_Cal-0.7815)
+			z = float((mag_z/Z_Gain)+Z_Cal-0.095)
 			f = math.sqrt((x*x) +(y*y) + (z*z))
 			field2 = round(f,3)
 			if(field2>8.100):
 				data.write("0.000,")
 				log.write("%s Sensor 2 too high\n" % datetime.datetime.now())
 			else:	
-				data.write("%s," % field2)
+				data.write("%05.3f," % field2)
 				pass
 		except IOError:
 			data.write("0.000,")
@@ -127,20 +127,20 @@ while True:
                         time.sleep(0.01)
 			accel, mag = lsm303.read()
 			mag_x, mag_y, mag_z = mag
-			X_Cal = 0
-			Y_Cal = 0
-			Z_Cal = 0
+			X_Cal = 0.6182
+			Y_Cal = 0.5432
+			Z_Cal = 0.4033
 
-			x = float((mag_x/XY_Gain)+X_Cal)
-			y = float((mag_y/XY_Gain)+Y_Cal)
-			z = float((mag_z/Z_Gain)+Z_Cal)
+			x = float((mag_x/XY_Gain)+X_Cal+0.136)
+			y = float((mag_y/XY_Gain)+Y_Cal-0.0625)
+			z = float((mag_z/Z_Gain)+Z_Cal-0.011)
 			f = math.sqrt((x*x) +(y*y) + (z*z))
 			field5 = round(f,3)
 			if(field5>8.100):
 				data.write("0.000,")
 				log.write("%s Sensor 5 too high\n" % datetime.datetime.now())
 			else:	
-				data.write("%s," % field5)
+				data.write("%05.3f," % field5)
 				pass
 		except IOError:
 			data.write("0.000,")
@@ -155,20 +155,20 @@ while True:
                         time.sleep(0.01)
 			accel, mag = lsm303.read()
 			mag_x, mag_y, mag_z = mag
-			X_Cal = 0
-			Y_Cal = 0
-			Z_Cal = 0
+			X_Cal = -0.3199
+			Y_Cal = 0.1879
+			Z_Cal = 0.7347
 
-			x = float((mag_x/XY_Gain)+X_Cal)
-			y = float((mag_y/XY_Gain)+Y_Cal)
-			z = float((mag_z/Z_Gain)+Z_Cal)
+			x = float((mag_x/XY_Gain)+X_Cal-0.5285)
+			y = float((mag_y/XY_Gain)+Y_Cal-0.0545)
+			z = float((mag_z/Z_Gain)+Z_Cal+0.2445)
 			f = math.sqrt((x*x) +(y*y) + (z*z))
 			field6 = round(f,3)
 			if(field6>8.100):
 				data.write("0.000,")
 				log.write("%s Sensor 6 too high\n" % datetime.datetime.now())
 			else:	
-				data.write("%s," % field6)
+				data.write("%05.3f," % field6)
 				pass
 		except IOError:
 			data.write("0.000,")
@@ -183,20 +183,20 @@ while True:
                         time.sleep(0.01)
 			accel, mag = lsm303.read()
 			mag_x, mag_y, mag_z = mag
-			X_Cal = 0
-			Y_Cal = 0
-			Z_Cal = 0
+			X_Cal = -0.4933
+			Y_Cal = -0.9211
+			Z_Cal = 1.3727
 
-			x = float((mag_x/XY_Gain)+X_Cal)
-			y = float((mag_y/XY_Gain)+Y_Cal)
-			z = float((mag_z/Z_Gain)+Z_Cal)
+			x = float((mag_x/XY_Gain)+X_Cal+0.4255)
+			y = float((mag_y/XY_Gain)+Y_Cal-0.657)
+			z = float((mag_z/Z_Gain)+Z_Cal-0.4715)
 			f = math.sqrt((x*x) +(y*y) + (z*z))
 			field7 = round(f,3)
 			if(field7>8.100):
-				data.write("0.000,")
+				data.write("0.000\n")
 				log.write("%s Sensor 7 too high\n" % datetime.datetime.now())
 			else:	
-				data.write("%s," % field7)
+				data.write("%05.3f\n" % field7)
 				pass
 		except IOError:
 			data.write("0.000 \n")
